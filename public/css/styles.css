@@ -1,0 +1,79 @@
+/* Estilo general para la página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+}
+
+/* Fondo parallax */
+.parallax-background {
+    background-image: url('../images/fondo.png'); /* Ajusta la ruta a la imagen */
+    height: 100vh; 
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Estilos de las cards con fondo casi transparente */
+.card {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo blanco con 10% de opacidad */
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Sombra sutil */
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px); /* Filtro para suavizar el fondo y dar un efecto de "vidrio" */
+    overflow: hidden; /* Asegura que la imagen se ajuste dentro de la tarjeta */
+    transition: transform 1s ease-out; /* Suaviza el cambio de tamaño */
+}
+
+/* Estilos para las imágenes dentro de las cards */
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Ajusta el tamaño de la imagen */
+    object-fit: cover; /* Asegura que la imagen cubra completamente el espacio */
+    object-position: center; /* Centra la imagen dentro de la tarjeta */
+    border-bottom: 1px solid #3fcd38;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out; /* Transición de opacidad y tamaño */
+}
+
+.card:hover {
+    cursor: pointer !important;
+    /* opacity: 0.5 !important; */
+    transform: scale(0.8) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+
+/* Estilo de la tarjeta */
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Centrar las cards en la página */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Para dispositivos móviles */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 150px;
+    }
+    .card-title {
+        font-size: 1.25rem;
+    }
+}
