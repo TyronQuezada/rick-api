@@ -1,23 +1,7 @@
 <?php 
  echo $header;
-    $imageUrl = $temporada['data']['cover'];
-    // Usamos preg_match para extraer el número de la temporada
-    if (preg_match('/temp-(\d+)\.jpg/', $imageUrl, $matches)) {
-        $seasonNumber = $matches[1];  // El número de la temporada es el primer valor en el array $matches
-    
-}
 ?>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        width: 80%;
-        margin: 20px auto;
-    }
     .episodios-list {
         list-style-type: none;
         padding: 0;
@@ -25,8 +9,8 @@
     .episodio {
         background-color: #fff;
         border-radius: 8px;
-        margin: 10px 0;
         padding: 15px;
+        margin: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         font-size: 22px;
     }
@@ -83,42 +67,41 @@
         border: none;
     }
 </style>
+
 <div class="container">
-    <div class="row">
+    <div class="row" style="height: 250px;">
         <div class="col-md-4"></div>
-        <div class="col-md-4 p-5">
-            <div class="card" style="width:200px">
-                <img class="card-img-top" src=" <?php echo $temporada['data']['cover'];?>" alt="Card image">
-                <div class="card-body">
-                    <h4 class="card-title">Temporada <?php echo $seasonNumber;?>
-                </h4> <!-- Número de temporada -->
+        <div class="col-md-4">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="<?php echo $character['image']; ?>" class="img-fluid rounded-start" alt="<?php echo $character['image']; ?>">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $character['name']; ?></h5>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>  
+        </div>
         <div class="col-md-4"></div>
     </div>
-</div>
-
     <h1>Lista de Episodios</h1>
-
-    <div class="row p-0 m-0">
-        <?php 
-        $int = 1;
-        foreach ($temporada['data']['episodios'] as $key => $episodio): ?>
-            <div class="episodio col-md-3 m-3">
-                <p><strong>Temporada:</strong> <?php echo $seasonNumber;?></p>
-                <h3>Episodio <?= $int ?>: <?= $key ?></h3>
-                <p><a href="#" onclick="openModal('<?= $episodio ?>')">Ver episodio</a></p>
-            </div>
-        <?php
-        $int++; 
-        endforeach; ?>
+    <div class="row">
+        <?php foreach ($episodios as $episodio): ?>
+            <div class="episodio col-md-3">
+                <p><strong>Temporada:</strong> <?= $episodio['temporada'] ?></p>
+                <h3>Episodio <?= $episodio['episodio'] ?>: <?= $episodio['nombre'] ?></h3>
+                <p><a href="#" style="text-decoration: none;" onclick="openModal('<?= $episodio['url'] ?>')">Ver episodio</a></p>
+        </div>
+        <?php endforeach; ?>
     </div>
-
-
+    
     <!-- Botón Volver al final del listado -->
-    <a href="<?= base_url('seasons/')?>
+    <a href="<?= base_url('characters/page/1')?>
     " class="back-button">Volver</a>
-
+</div>
 
 <!-- Modal -->
 <div id="episodeModal" class="modal">
